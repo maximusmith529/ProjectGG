@@ -83,7 +83,16 @@ app.post("/api/users/login", (req, res) =>{
         if(response.RESPONSE_STATUS == "ERROR"){
             return res.status(400).json({error: response.RESPONSE_MESSAGE});
         }
+<<<<<<< Updated upstream
         return res.status(200).json(response.RESPONSE_MESSAGE);
+=======
+
+        // login_user returns the tokenid for a user's session, return a json of the response and add it to the header
+        console.log("Token created: " + response.RESPONSE_MESSAGE);
+        res.cookie('name', 'geeksforgeeks');
+        res.send("Cookie Set");
+        return res.status(200).json({ token: response.RESPONSE_MESSAGE });
+>>>>>>> Stashed changes
     });
 });
 
@@ -104,3 +113,81 @@ app.get("/api/users", (req, res) => {
         });
     });
 });
+<<<<<<< Updated upstream
+=======
+
+// *=============================================================*
+// |                     Get All User Tokens                     |
+// *=============================================================*
+// incoming {  }
+// outgoing { status }
+app.get("/api/tokens", (req, res) =>
+{
+    db.query("SELECT * FROM USER_TOKEN",
+        (err, rows) =>
+        {
+            if (err)
+            {
+                res.status(400).json({ error: err.message });
+                return;
+            }
+            res.json({
+                message: "success",
+                data: rows,
+            });
+        });
+}
+);
+
+// get games, and then get all reviews
+app.get("/api/games", (req, res) =>
+{
+    db.query("SELECT * FROM GAME", (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: "success",
+            data: rows,
+        });
+    });
+});
+
+// get all reviews
+app.get("/api/reviews", (req, res) =>
+{
+    db.query("SELECT * FROM REVIEW", (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: "success",
+            data: rows,
+        });
+    });
+});
+
+// get all reviews for a game
+app.get("/api/reviews/:gameID", (req, res) =>
+{
+    const gameID = req.params.gameID;
+    db.query("SELECT * FROM REVIEW WHERE GAME= ?", [gameID], (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: "success",
+            data: rows,
+        });
+    });
+});
+>>>>>>> Stashed changes

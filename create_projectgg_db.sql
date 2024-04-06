@@ -161,4 +161,90 @@ BEGIN
     END IF;
     SELECT * FROM response;
     DROP temporary table response;
+<<<<<<< Updated upstream
 END //
+=======
+END //
+
+-- function to check token against current
+delimiter //
+create procedure check_token(
+    in token varchar(255)
+)
+BEGIN
+    -- if token given by front matches any in back, then return userID
+    DECLARE tokenExists INT default 0;
+    DECLARE user_id INT;
+
+    CREATE temporary table if not exists response (
+        RESPONSE_STATUS varchar(255),
+        RESPONSE_MESSAGE varchar(255)
+    );
+
+    SELECT COUNT(*) INTO tokenExists FROM login_token WHERE TOKEN = token;
+
+    IF tokenExists = 0 THEN
+        INSERT INTO response VALUES ('ERROR', 'Token does not exist');
+    ELSE
+        SELECT USER_ID INTO user_id FROM login_token WHERE TOKEN = token;
+        INSERT INTO response VALUES ('SUCCESS', user_id);
+    END IF;
+
+    SELECT * FROM response;
+    DROP temporary table response;
+END //
+
+
+
+
+
+
+
+
+
+-- =================================================================================================
+--                              Default Values Start Here
+-- =================================================================================================
+
+-- create default games (GTA V, Minecraft, Baldur's Gate 3, League of Legends)
+insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (1, 'GTA V', 'Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the first main entry in the Grand Theft Auto series since 2008''s Grand Theft Auto IV.', 4.5);
+insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (2, 'Minecraft', 'Minecraft is a sandbox video game developed by Mojang Studios. Created by Markus "Notch" Persson in the Java programming language and released as a public alpha for personal computers in 2009.', 4);
+insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (3, 'Baldur''s Gate 3', 'Baldur''s Gate III is an upcoming role-playing video game that is being developed and published by Larian Studios. It is the third main game in the Baldur''s Gate series.', 5);
+insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (4, 'League of Legends', 'League of Legends is a multiplayer online battle arena video game developed and published by Riot Games for Microsoft Windows and macOS.', 3.9);
+
+-- create default users (sam, tom, jerry, bob)
+INSERT INTO user_login (USER_ID, USERNAME, PASS) VALUES (1, 'sam', 'password1');
+INSERT INTO user_login (USER_ID, USERNAME, PASS) VALUES (2, 'tom', 'password2');
+INSERT INTO user_login (USER_ID, USERNAME, PASS) VALUES (3, 'jerry', 'password3');
+INSERT INTO user_login (USER_ID, USERNAME, PASS) VALUES (4, 'bob', 'password4');
+
+INSERT INTO user (USER_ID, USERNAME) VALUES (1, 'sam');
+INSERT INTO user (USER_ID, USERNAME) VALUES (2, 'tom');
+INSERT INTO user (USER_ID, USERNAME) VALUES (3, 'jerry');
+INSERT INTO user (USER_ID, USERNAME) VALUES (4, 'bob');
+
+-- create default reviews (each of them have reviewed each of the games)
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (1, 1, 1, 'Great game', 4.5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (2, 1, 2, 'Good game', 4);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (3, 1, 3, 'Best game', 5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (4, 1, 4, 'Decent game', 3.9);
+
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (5, 2, 1, 'Great game', 4.5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (6, 2, 2, 'Good game', 4);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (7, 2, 3, 'Best game', 5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (8, 2, 4, 'Decent game', 3.9);
+
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (9, 3, 1, 'Great game', 4.5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (10, 3, 2, 'Good game', 4);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (11, 3, 3, 'Best game', 5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (12, 3, 4, 'Decent game', 3.9);
+
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (13, 4, 1, 'Great game', 4.5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (14, 4, 2, 'Good game', 4);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (15, 4, 3, 'Best game', 5);
+insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (16, 4, 4, 'Decent game', 3.9);
+
+
+
+
+>>>>>>> Stashed changes
