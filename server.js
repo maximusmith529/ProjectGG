@@ -83,16 +83,13 @@ app.post("/api/users/login", (req, res) =>{
         if(response.RESPONSE_STATUS == "ERROR"){
             return res.status(400).json({error: response.RESPONSE_MESSAGE});
         }
-<<<<<<< Updated upstream
         return res.status(200).json(response.RESPONSE_MESSAGE);
-=======
 
         // login_user returns the tokenid for a user's session, return a json of the response and add it to the header
         console.log("Token created: " + response.RESPONSE_MESSAGE);
         res.cookie('name', 'geeksforgeeks');
         res.send("Cookie Set");
         return res.status(200).json({ token: response.RESPONSE_MESSAGE });
->>>>>>> Stashed changes
     });
 });
 
@@ -113,8 +110,6 @@ app.get("/api/users", (req, res) => {
         });
     });
 });
-<<<<<<< Updated upstream
-=======
 
 // *=============================================================*
 // |                     Get All User Tokens                     |
@@ -190,4 +185,3 @@ app.get("/api/reviews/:gameID", (req, res) =>
         });
     });
 });
->>>>>>> Stashed changes
