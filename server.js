@@ -12,25 +12,34 @@ app.use(cors());
 // *=============================================================*
 // incoming { token }
 // outgoing { userID }
-app.use("/", (req, res, next) => {
-    const token = req.headers.token;
-    if (!token) {
-        return res.status(401).json({error: "No login token provided"});
+app.use("/api/token", (req, res, next) =>
+{
+    const token = req.body.token;
+    console.log("Token: " + token);
+    if (!token)
+    {
+        if (!token)
+        {
+            console.log("No login token provided");
+            next();
+        }
     }
-
     const sql = "CALL check_token(?)";
     const params = [token];
-    db.query(sql, params, (err, result) => {
-        if(err){
-            return res.status(400).json({error: "SQLError"});
+    db.query(sql, params, (err, result) =>
+    {
+        if (err)
+        {
+            return res.status(400).json({ error: "SQLError" });
         }
 
         const response = result[0][0];
 
-        if(response.RESPONSE_STATUS == "ERROR"){
-            return res.status(400).json({error: response.RESPONSE_MESSAGE});
+        if (response.RESPONSE_STATUS == "ERROR")
+        {
+            return res.status(400).json({ error: response.RESPONSE_MESSAGE });
         }
-        return res.status(200).json({userID: response.USER_ID});
+        return res.status(200).json({ userID: response.USER_ID });
     });
 });
 
@@ -60,9 +69,11 @@ app.get("/test", (req, res) =>
 // *=============================================================*
 // incoming {username, password}
 // outgoing { status }
-app.post("/api/users/signup", (req, res) =>{
-    const {username, password} = req.body;
-    if (!username || !password){
+app.post("/api/users/signup", (req, res) =>
+{
+    const { username, password } = req.body;
+    if (!username || !password)
+    {
         res.status(400).send("Username and password required");
         return;
     }
@@ -71,15 +82,18 @@ app.post("/api/users/signup", (req, res) =>{
 
     const sql = "CALL create_user_login(?, ?)";
     const params = [username, password];
-	db.query(sql, params, function (err, result) {
-        if(err){
-            return res.status(400).json({error: "SQLError"});
+    db.query(sql, params, function (err, result)
+    {
+        if (err)
+        {
+            return res.status(400).json({ error: "SQLError" });
         }
 
         const response = result[0][0];
 
-        if(response.RESPONSE_STATUS == "ERROR"){
-            return res.status(400).json({error: response.RESPONSE_MESSAGE});
+        if (response.RESPONSE_STATUS == "ERROR")
+        {
+            return res.status(400).json({ error: response.RESPONSE_MESSAGE });
         }
         return res.status(200).json({});
     });
@@ -90,9 +104,11 @@ app.post("/api/users/signup", (req, res) =>{
 // *=============================================================*
 // incoming {username, password}
 // outgoing { status, token }
-app.post("/api/users/login", (req, res) =>{
-    const {username, password} = req.body;
-    if (!username || !password){
+app.post("/api/users/login", (req, res) =>
+{
+    const { username, password } = req.body;
+    if (!username || !password)
+    {
         res.status(400).send("Username and password required");
         return;
     }
@@ -101,17 +117,23 @@ app.post("/api/users/login", (req, res) =>{
 
     const sql = "CALL login_user(?, ?)";
     const params = [username, password];
-    db.query(sql, params, (err, result) =>{
-        if(err){
-            return res.status(400).json({error: "SQLError"});
+    db.query(sql, params, (err, result) =>
+    {
+        if (err)
+        {
+            return res.status(400).json({ error: "SQLError" });
         }
 
         const response = result[0][0];
 
-        if(response.RESPONSE_STATUS == "ERROR"){
-            return res.status(400).json({error: response.RESPONSE_MESSAGE});
+        if (response.RESPONSE_STATUS == "ERROR")
+        {
+            return res.status(400).json({ error: response.RESPONSE_MESSAGE });
         }
-        return res.status(200).json(response.RESPONSE_MESSAGE);
+
+        // login_user returns the tokenid for a user's session, return a json of the response and add it to the header
+        console.log("Token created: " + response.RESPONSE_MESSAGE);
+        return res.status(200).json({ token: response.RESPONSE_MESSAGE });
     });
 });
 
@@ -120,9 +142,12 @@ app.post("/api/users/login", (req, res) =>{
 // *=============================================================*
 // incoming {  }
 // outgoing { status }
-app.get("/api/users", (req, res) => {
-    db.query("SELECT * FROM USER_LOGIN", (err, rows) => {
-        if (err) {
+app.get("/api/users", (req, res) =>
+{
+    db.query("SELECT * FROM USER_LOGIN", (err, rows) =>
+    {
+        if (err)
+        {
             res.status(400).json({ error: err.message });
             return;
         }
@@ -133,3 +158,25 @@ app.get("/api/users", (req, res) => {
     });
 });
 
+// *=============================================================*
+// |                     Get All User Tokens                     |
+// *=============================================================*
+// incoming {  }
+// outgoing { status }
+app.get("/api/tokens", (req, res) =>
+{
+    db.query("SELECT * FROM USER_TOKEN",
+        (err, rows) =>
+        {
+            if (err)
+            {
+                res.status(400).json({ error: err.message });
+                return;
+            }
+            res.json({
+                message: "success",
+                data: rows,
+            });
+        });
+}
+);

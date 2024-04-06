@@ -156,7 +156,7 @@ BEGIN
         IF passMatch = 0 THEN
             INSERT INTO response VALUES ('ERROR', 'Password does not match');
         ELSE
-            INSERT INTO response VALUES ('SUCCESS', 'Login successful');
+            INSERT INTO response VALUES ('TOKEN', token_id);
         END IF;
     END IF;
     SELECT * FROM response;

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProjectGG</title>
- 
+
     <style type="text/css">
         a {
             text-decoration: none;
             color: black;
         }
-        .navBar{
+
+        .navBar {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             padding-right: 15px;
             padding-left: 15px;
@@ -20,17 +22,21 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .navLogo a {
             font-size: larger;
         }
+
         .navElements li {
             list-style: none;
             display: inline;
         }
+
         li a {
             font-size: 18px;
             margin-right: 15px;
         }
+
         .navElements button {
             background-color: grey;
             border-radius: 8px;
@@ -39,6 +45,7 @@
             width: 80px;
             cursor: pointer;
         }
+
         .popUp {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             position: absolute;
@@ -57,18 +64,20 @@
             border-radius: 10px;
 
             transition: top 0ms ease-in-out 200ms,
-                        opacity 200ms ease-in-out 0ms,
-                        transform 00ms ease-in-out 0ms;
+                opacity 200ms ease-in-out 0ms,
+                transform 00ms ease-in-out 0ms;
         }
+
         .popUp.active {
             top: 50%;
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
 
             transition: top 0ms ease-in-out 0ms,
-                        opacity 200ms ease-in-out 0ms,
-                        transform 20ms ease-in-out 0ms;
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
         }
+
         .exitButton button {
             float: right;
             padding: 0;
@@ -77,12 +86,14 @@
             background: none;
             cursor: pointer;
         }
+
         .logInTitle {
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: x-large;
         }
+
         .logInForm {
             display: flex;
             justify-content: center;
@@ -93,6 +104,7 @@
             clear: both;
             font-size: larger;
         }
+
         .logInForm input {
             display: flex;
             justify-content: center;
@@ -102,96 +114,106 @@
             clear: both;
             font-size: medium;
         }
+
         .redirectLink {
             display: flex;
             justify-content: center;
             align-items: center;
 
             font-size: smaller;
-            text-decoration:underline;
+            text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
-    <div class = "navBar">
-    <div class = "navLogo">
-    <h1> <a href="#">ProjectGG</h1></a> </h1>
-    </div>
-
-    <div class = "navElements">
-    <ul>
-        <li> <a href="#">Home</a> </li>
-        <li> <a href=""> Games</a> </li>
-        <li> <a href="">Community</a> </li>
-        <li> <button class="showLoginButton" style="color: whitesmoke;">Sign In</button> </li>
-    </ul>
-    </div>
-</div>
-
-<div class="popUp">
-    <div class="exitButton">
-        <button id="closeButton" type="close-button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="logInTitle">
-    <h3>Log In</h3>
-    </div>  
-
-    <div class="logInForm">
-    <form id="userLogin">
-        <label for="logInUser">Username:</label>
-        <input type="text" id="logInUser" name="username" placeholder="xxkylecranexx" style="width: 300px" required>
-        <label for="logInPass">Password:</label>
-        <input type="password" id="logInPass" name="password" placeholder="************" style="width: 300px;" required>
-
-        <br>
-
-        <input id="showLogin" type="submit" value="Sign In" style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer;"">
-        <div class="redirectLink">
-        <a href="signup.html">Don't have an account yet?</a>
+    <div class="navBar">
+        <div class="navLogo">
+            <h1> <a href="#">ProjectGG</h1></a> </h1>
         </div>
-    </form>
+
+        <div class="navElements">
+            <ul>
+                <li> <a href="#">Home</a> </li>
+                <li> <a href=""> Games</a> </li>
+                <li> <a href="">Community</a> </li>
+                <li id="cornerButton"> <button class="showLoginButton" style="color: whitesmoke;">Sign In</button> </li>
+            </ul>
+        </div>
     </div>
-</div>
 
-<script>
-    document.querySelector('.showLoginButton').addEventListener('click', function() { document.querySelector('.popUp').classList.add('active');
-});
-    document.querySelector('#closeButton').addEventListener('click', function() {document.querySelector('.popUp').classList.remove('active');
-});
-</script>
-<script>
-    // Select the form
-    const form = document.getElementById('userLogin');
+    <div class="popUp">
+        <div class="exitButton">
+            <button id="closeButton" type="close-button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="logInTitle">
+            <h3>Log In</h3>
+        </div>
 
-    form.addEventListener('submit', async (event) =>
-    {
-        // Prevent the default form submission
-        event.preventDefault();
+        <div class="logInForm">
+            <form id="userLogin">
+                <label for="logInUser">Username:</label>
+                <input type="text" id="logInUser" name="username" placeholder="xxkylecranexx" style="width: 300px"
+                    required>
+                <label for="logInPass">Password:</label>
+                <input type="password" id="logInPass" name="password" placeholder="************" style="width: 300px;"
+                    required>
 
-        // Create a FormData instance
-        const formData = new FormData(form);
+                <br>
 
-        // Convert the FormData to JSON
-        const data = {};
-        formData.forEach((value, key) => data[key] = value);
-        const json = JSON.stringify(data);
-        // alert with the json data
-        alert(json);
-        // Send a POST request to the Express endpoint
-        const response = await fetch('http://localhost:2364/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: json
+                <input id="showLogin" type="submit" value="Sign In"
+                    style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer;"">
+        <div class=" redirectLink">
+                <a href="signup.html">Don't have an account yet?</a>
+        </div>
+        </form>
+    </div>
+    </div>
+
+    <script>
+        document.querySelector('.showLoginButton').addEventListener('click', function ()
+        {
+            document.querySelector('.popUp').classList.add('active');
         });
+        document.querySelector('#closeButton').addEventListener('click', function ()
+        {
+            document.querySelector('.popUp').classList.remove('active');
+        });
+    </script>
+    <script>
+        // Select the form
+        const form = document.getElementById('userLogin');
 
-        // Log the response
-        const result = await response.json();
-        console.log(result);
-    });
-</script>
+        form.addEventListener('submit', async (event) =>
+        {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Create a FormData instance
+            const formData = new FormData(form);
+
+            // Convert the FormData to JSON
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            const json = JSON.stringify(data);
+            // alert with the json data
+            alert(json);
+            // Send a POST request to the Express endpoint
+            const response = await fetch('http://localhost:2364/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: json
+            });
+
+            // Log the response
+            const result = await response.json();
+            console.log(result);
+        });
+    </script>
 </body>
+
 </html>
