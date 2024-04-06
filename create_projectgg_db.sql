@@ -162,3 +162,31 @@ BEGIN
     SELECT * FROM response;
     DROP temporary table response;
 END //
+
+-- function to check token against current
+delimiter //
+create procedure check_token(
+    in token varchar(255)
+)
+BEGIN
+    -- if token given by front matches any in back, then return userID
+    DECLARE tokenExists INT default 0;
+    DECLARE user_id INT;
+
+    CREATE temporary table if not exists response (
+        RESPONSE_STATUS varchar(255),
+        RESPONSE_MESSAGE varchar(255)
+    );
+
+    SELECT COUNT(*) INTO tokenExists FROM login_token WHERE TOKEN = token;
+
+    IF tokenExists = 0 THEN
+        INSERT INTO response VALUES ('ERROR', 'Token does not exist');
+    ELSE
+        SELECT USER_ID INTO user_id FROM login_token WHERE TOKEN = token;
+        INSERT INTO response VALUES ('SUCCESS', user_id);
+    END IF;
+
+    SELECT * FROM response;
+    DROP temporary table response;
+END //

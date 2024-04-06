@@ -7,6 +7,34 @@ const port = 2364;
 app.use(express.json());
 app.use(cors());
 
+// *=============================================================*
+// |                      Verify User Token                       |
+// *=============================================================*
+// incoming { token }
+// outgoing { userID }
+app.use("/", (req, res, next) => {
+    const token = req.headers.token;
+    if (!token) {
+        return res.status(401).json({error: "No login token provided"});
+    }
+
+    const sql = "CALL check_token(?)";
+    const params = [token];
+    db.query(sql, params, (err, result) => {
+        if(err){
+            return res.status(400).json({error: "SQLError"});
+        }
+
+        const response = result[0][0];
+
+        if(response.RESPONSE_STATUS == "ERROR"){
+            return res.status(400).json({error: response.RESPONSE_MESSAGE});
+        }
+        return res.status(200).json({userID: response.USER_ID});
+    });
+});
+
+
 // require database
 const db = require('./database.js');
 const { ok } = require('assert');
@@ -104,3 +132,4 @@ app.get("/api/users", (req, res) => {
         });
     });
 });
+
