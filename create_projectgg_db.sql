@@ -124,3 +124,41 @@ BEGIN
 END //
 delimiter ;
 
+
+-- function to login (validate user)
+delimiter //
+create procedure login_user(
+    in username varchar(255),
+    in pass varchar(255)
+)
+BEGIN
+
+    DECLARE userExists INT default 0;
+    DECLARE passMatch INT default 0;
+    DECLARE user_id INT;
+    -- create id for token
+    DECLARE token_id varchar(255);
+    SET token_id = UUID();
+
+    CREATE temporary table if not exists response (
+        RESPONSE_STATUS varchar(255),
+        RESPONSE_MESSAGE varchar(255)
+    );
+
+    SELECT COUNT(*) INTO userExists FROM user_login WHERE USERNAME = username;
+
+    IF userExists = 0 THEN
+        INSERT INTO response VALUES ('ERROR', 'User does not exist');
+    ELSE
+        SELECT USER_ID INTO user_id FROM user_login WHERE USERNAME = username;
+        SELECT COUNT(*) INTO passMatch FROM user_login WHERE USERNAME = username AND PASS = pass;
+        INSERT INTO login_token (TOKEN, USER_ID, CREATED) VALUES (token_id, user_id, NOW());
+        IF passMatch = 0 THEN
+            INSERT INTO response VALUES ('ERROR', 'Password does not match');
+        ELSE
+            INSERT INTO response VALUES ('SUCCESS', 'Login successful');
+        END IF;
+    END IF;
+    SELECT * FROM response;
+    DROP temporary table response;
+END //
