@@ -114,14 +114,7 @@
     </div>
 
     <div class="logIn">
-    <form>
-        <div class="email">
-        <label for="email" style=" font-size: larger;">E-Mail:</label>
-        <input type="email" id="email" name="email" style=" font-size: medium;" placeholder="steve@iblock.com">
-        </div>
-
-        <br>
-
+    <form id="signUpInfo">
         <div class="username">
         <label for="username" style=" font-size: large;">Username:</label>
         <input type="text" id="username" name="username" style=" font-size: medium;" placeholder="cloudstrifexoxo" required>
@@ -141,5 +134,31 @@
         </div>
     </div>
     </form>
+    <script>
+        const form = document.getElementById('signUpInfo');
+        
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            const json = JSON.stringify(data);
+
+            alert(json);
+            
+            const response = await fetch('http://localhost:2364/api/users/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: json
+            });
+
+            const result = await response.json();
+            console.log(result);
+        });
+    </script>
 </body>
 </html>
