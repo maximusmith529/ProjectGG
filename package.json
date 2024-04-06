@@ -1,0 +1,14 @@
+{
+  "name": "projectgg",
+  "version": "1.0.0",
+  "description": "Community game rating website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"hello!\""
+  },
+  "author": "Sadie, Maximus",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
