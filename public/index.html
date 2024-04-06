@@ -139,11 +139,11 @@
     </div>  
 
     <div class="logInForm">
-    <form>
+    <form id="userLogin">
         <label for="logInUser">Username:</label>
-        <input type="text" id="logInUser" name="logInUser" placeholder="xxkylecranexx" style="width: 300px" required>
+        <input type="text" id="logInUser" name="username" placeholder="xxkylecranexx" style="width: 300px" required>
         <label for="logInPass">Password:</label>
-        <input type="password" id="logInPass" name="logInPass" placeholder="************" style="width: 300px;" required>
+        <input type="password" id="logInPass" name="password" placeholder="************" style="width: 300px;" required>
 
         <br>
 
@@ -161,6 +161,37 @@
     document.querySelector('#closeButton').addEventListener('click', function() {document.querySelector('.popUp').classList.remove('active');
 });
 </script>
+<script>
+    // Select the form
+    const form = document.getElementById('userLogin');
 
+    form.addEventListener('submit', async (event) =>
+    {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Create a FormData instance
+        const formData = new FormData(form);
+
+        // Convert the FormData to JSON
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+        const json = JSON.stringify(data);
+        // alert with the json data
+        alert(json);
+        // Send a POST request to the Express endpoint
+        const response = await fetch('http://localhost:2364/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        });
+
+        // Log the response
+        const result = await response.json();
+        console.log(result);
+    });
+</script>
 </body>
 </html>
