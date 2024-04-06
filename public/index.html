@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProjectGG</title>
+ 
     <style type="text/css">
         a {
             text-decoration: none;
@@ -30,12 +31,84 @@
             font-size: 18px;
             margin-right: 15px;
         }
-        button {
+        .navElements button {
             background-color: grey;
             border-radius: 8px;
             font-size: 18px;
             height: 33px;
             width: 80px;
+            cursor: pointer;
+        }
+        .popUp {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding-right: 10px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1);
+
+            width: 400px;
+            height: 300px;
+            padding: 50px, 60px;
+            background-color: silver;
+
+            box-shadow: 5px 5px 5px 5px;
+            border-radius: 10px;
+
+            transition: top 0ms ease-in-out 200ms,
+                        opacity 200ms ease-in-out 0ms,
+                        transform 00ms ease-in-out 0ms;
+        }
+        .popUp.active {
+            top: 50%;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+
+            transition: top 0ms ease-in-out 0ms,
+                        opacity 200ms ease-in-out 0ms,
+                        transform 20ms ease-in-out 0ms;
+        }
+        .exitButton button {
+            float: right;
+            padding: 0;
+            font-size: x-large;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        .logInTitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: x-large;
+        }
+        .logInForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: auto;
+            width: 250px;
+            clear: both;
+            font-size: larger;
+        }
+        .logInForm input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            clear: both;
+            font-size: medium;
+        }
+        .redirectLink {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: smaller;
+            text-decoration:underline;
         }
     </style>
 </head>
@@ -50,9 +123,44 @@
         <li> <a href="#">Home</a> </li>
         <li> <a href=""> Games</a> </li>
         <li> <a href="">Community</a> </li>
-        <li> <button>Sign In</button> </li>
+        <li> <button class="showLoginButton" style="color: whitesmoke;">Sign In</button> </li>
     </ul>
-    </div>  
+    </div>
 </div>
+
+<div class="popUp">
+    <div class="exitButton">
+        <button id="closeButton" type="close-button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="logInTitle">
+    <h3>Log In</h3>
+    </div>  
+
+    <div class="logInForm">
+    <form>
+        <label for="logInUser">Username:</label>
+        <input type="text" id="logInUser" name="logInUser" placeholder="xxkylecranexx" style="width: 300px" required>
+        <label for="logInPass">Password:</label>
+        <input type="password" id="logInPass" name="logInPass" placeholder="************" style="width: 300px;" required>
+
+        <br>
+
+        <input id="showLogin" type="submit" value="Sign In" style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer;"">
+        <div class="redirectLink">
+        <a href="signup.html">Don't have an account yet?</a>
+        </div>
+    </form>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.showLoginButton').addEventListener('click', function() { document.querySelector('.popUp').classList.add('active');
+});
+    document.querySelector('#closeButton').addEventListener('click', function() {document.querySelector('.popUp').classList.remove('active');
+});
+</script>
+
 </body>
 </html>
