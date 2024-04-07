@@ -235,31 +235,54 @@ app.get('/gamesearch', (req, res) => {
 });
 
 // select name from all games
-app.get('/games', (req, res) => {
-    db.query("SELECT * FROM GAME", (err, rows) =>
-    {
-        if (err)
-        {
+app.get('/games/:gameID', (req, res) => {
+    const gameID = req.params.gameID;
+    const sql1 = `SELECT * FROM GAME WHERE GAME_ID = ?`;
+    const sql2 = `SELECT REVIEW.*, USER.USERNAME FROM REVIEW INNER JOIN USER ON REVIEW.REVIEWER = USER.USER_ID WHERE GAME = ?`;
+
+    db.query(sql1, [gameID], (err, game) => {
+        if (err) {
             res.status(400).json({ error: err.message });
             return;
         }
-        res.json({
-            message: "success",
-            data: rows[0].GAMEPICTURE
+
+        db.query(sql2, [gameID], (err, reviews) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+                return;
+            }
+
+            res.render('gamepage',{
+                message: "success",
+                game: game[0],
+                reviews: reviews
+            });
         });
     });
 });
 
-// dynamic game page
-app.get('/games/:gameID', (req, res) => {
+app.get('/games/:gameID/test', (req, res) => {
     const gameID = req.params.gameID;
-    db.query("SELECT * FROM GAME WHERE GAMEID= ?", [gameID], (err, rows) =>
-    {
-        if (err)
-        {
+    const sql1 = `SELECT * FROM GAME WHERE GAME_ID = ?`;
+    const sql2 = `SELECT REVIEW.*, USER.USERNAME FROM REVIEW INNER JOIN USER ON REVIEW.REVIEWER = USER.USER_ID WHERE GAME = ?`;
+
+    db.query(sql1, [gameID], (err, game) => {
+        if (err) {
             res.status(400).json({ error: err.message });
             return;
         }
-        res.render('gamepage', {game: rows[0]});
+
+        db.query(sql2, [gameID], (err, reviews) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+                return;
+            }
+
+            res.json({
+                message: "success",
+                game: game[0],
+                reviews: reviews
+            });
+        });
     });
 });
