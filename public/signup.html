@@ -107,8 +107,6 @@
         <div class = "navElements">
         <ul>
             <li> <a href="index.html">Home</a> </li>
-            <li> <a href=""> Games</a> </li>
-            <li> <a href="">Community</a> </li>
         </ul>
         </div>  
     </div>
@@ -146,7 +144,7 @@
             formData.forEach((value, key) => data[key] = value);
             const json = JSON.stringify(data);
 
-            alert(json);
+            // alert(json);
             
             const response = await fetch('http://localhost:2364/api/users/signup', {
                 method: 'POST',

@@ -37,6 +37,7 @@
             font-size: 18px;
             height: 33px;
             width: 80px;
+            margin-right: 10px;
             cursor: pointer;
         }
         .popUp {
@@ -121,9 +122,10 @@
     <div class = "navElements">
     <ul>
         <li> <a href="#">Home</a> </li>
-        <li> <a href=""> Games</a> </li>
+        <li> <a href="gamesearch.html"> Games</a> </li>
         <li> <a href="">Community</a> </li>
         <li> <button class="showLoginButton" style="color: whitesmoke;">Sign In</button> </li>
+        <li> <a href="profile.html"><button class="showLoginButton" style="color: whitesmoke;">Profile</button> </li></a>
     </ul>
     </div>
 </div>
@@ -178,7 +180,7 @@
         formData.forEach((value, key) => data[key] = value);
         const json = JSON.stringify(data);
         // alert with the json data
-        alert(json);
+        // alert(json);
         // Send a POST request to the Express endpoint
         const response = await fetch('http://localhost:2364/api/users/login', {
             method: 'POST',
