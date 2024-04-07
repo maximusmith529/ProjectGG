@@ -249,3 +249,17 @@ app.get('/games', (req, res) => {
         });
     });
 });
+
+// dynamic game page
+app.get('/games/:gameID', (req, res) => {
+    const gameID = req.params.gameID;
+    db.query("SELECT * FROM GAME WHERE GAMEID= ?", [gameID], (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.render('gamepage', {game: rows[0]});
+    });
+});
