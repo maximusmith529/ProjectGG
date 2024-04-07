@@ -39,6 +39,7 @@ create table user (
 create table game (
     GAME_ID int primary key,
     GAMENAME varchar(255) not null,
+    GAMEPICTURE varchar(255),
     ABOUT varchar(255),
     RATING float
 );
@@ -161,9 +162,6 @@ BEGIN
     END IF;
     SELECT * FROM response;
     DROP temporary table response;
-<<<<<<< Updated upstream
-END //
-=======
 END //
 
 -- function to check token against current
@@ -207,10 +205,10 @@ END //
 -- =================================================================================================
 
 -- create default games (GTA V, Minecraft, Baldur's Gate 3, League of Legends)
-insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (1, 'GTA V', 'Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the first main entry in the Grand Theft Auto series since 2008''s Grand Theft Auto IV.', 4.5);
-insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (2, 'Minecraft', 'Minecraft is a sandbox video game developed by Mojang Studios. Created by Markus "Notch" Persson in the Java programming language and released as a public alpha for personal computers in 2009.', 4);
-insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (3, 'Baldur''s Gate 3', 'Baldur''s Gate III is an upcoming role-playing video game that is being developed and published by Larian Studios. It is the third main game in the Baldur''s Gate series.', 5);
-insert into game (GAME_ID, GAMENAME, ABOUT, RATING) values (4, 'League of Legends', 'League of Legends is a multiplayer online battle arena video game developed and published by Riot Games for Microsoft Windows and macOS.', 3.9);
+insert into game (GAME_ID, GAMENAME, GAMEPICTURE, ABOUT, RATING) values (1, 'GTA V','https://i.imgur.com/nWX7DXX.jpeg' , 'Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the first main entry in the Grand Theft Auto series since 2008''s Grand Theft Auto IV.', 4.5);
+insert into game (GAME_ID, GAMENAME, GAMEPICTURE, ABOUT, RATING) values (2, 'Minecraft', 'https://i.imgur.com/mih2p0Q.png', 'Minecraft is a sandbox video game developed by Mojang Studios. Created by Markus "Notch" Persson in the Java programming language and released as a public alpha for personal computers in 2009.', 4);
+insert into game (GAME_ID, GAMENAME, GAMEPICTURE, ABOUT, RATING) values (3, 'Baldur''s Gate 3','https://i.imgur.com/aGWjGNl.png', 'Baldur''s Gate III is an upcoming role-playing video game that is being developed and published by Larian Studios. It is the third main game in the Baldur''s Gate series.', 5);
+insert into game (GAME_ID, GAMENAME, GAMEPICTURE, ABOUT, RATING) values (4, 'League of Legends', 'https://i.imgur.com/xyGRxzZ.png','League of Legends is a multiplayer online battle arena video game developed and published by Riot Games for Microsoft Windows and macOS.', 3.9);
 
 -- create default users (sam, tom, jerry, bob)
 INSERT INTO user_login (USER_ID, USERNAME, PASS) VALUES (1, 'sam', 'password1');
@@ -247,4 +245,3 @@ insert into review (REVIEW_ID, REVIEWER, GAME, REVIEW, RATING) values (16, 4, 4,
 
 
 
->>>>>>> Stashed changes
