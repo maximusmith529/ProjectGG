@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectGG</title>
+ 
+    <style type="text/css">
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .navBar{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navLogo a {
+            font-size: larger;
+        }
+        .navElements li {
+            list-style: none;
+            display: inline;
+        }
+        li a {
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        .navElements button {
+            background-color: grey;
+            border-radius: 8px;
+            font-size: 18px;
+            height: 33px;
+            width: 80px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .popUp {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding-right: 10px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1);
+
+            width: 400px;
+            height: 300px;
+            padding: 50px, 60px;
+            background-color: silver;
+
+            box-shadow: 5px 5px 5px 5px;
+            border-radius: 10px;
+
+            transition: top 0ms ease-in-out 200ms,
+                        opacity 200ms ease-in-out 0ms,
+                        transform 00ms ease-in-out 0ms;
+
+            pointer-events: none;
+        }
+        .popUp.active {
+            top: 50%;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+
+            transition: top 0ms ease-in-out 0ms,
+                        opacity 200ms ease-in-out 0ms,
+                        transform 20ms ease-in-out 0ms;
+
+            pointer-events: all;
+        }
+        .exitButton button {
+            float: right;
+            padding: 0;
+            font-size: x-large;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        .logInTitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: x-large;
+        }
+        .logInForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: auto;
+            width: 250px;
+            clear: both;
+            font-size: larger;
+        }
+        .logInForm input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            clear: both;
+            font-size: medium;
+        }
+        .redirectLink {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: smaller;
+            text-decoration:underline;
+        }
+        .searchBar {
+            margin-top: 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .searchBar input{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-radius: 10px;
+
+            font-size: xx-large;
+
+            width: 600px;
+            height: 60px;
+        }
+        .searchBar button {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: x-large;
+            border-radius: 10px;
+
+            width: 150px;
+            height: 60px;
+
+            background-color: grey;
+            border-radius: 10px;
+            color: whitesmoke;
+
+            position: relative;
+            top: -5px;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class = "navBar">
+    <div class = "navLogo">
+    <h1> <a href="index.html">ProjectGG</h1></a> </h1>
+    </div>
+
+    <div class = "navElements">
+    <ul>
+        <li> <a href="index.html">Home</a> </li>
+        <li> <a href="gamesearch.html"> Games</a> </li>
+        <li> <a href="">Community</a> </li>
+        <li> <button class="showLoginButton" style="color: whitesmoke;">Sign In</button> </li>
+        <li> <a href="profile.html"><button class="showLoginButton" style="color: whitesmoke;">Profile</button> </li></a>
+    </ul>
+    </div>
+</div>
+
+<div class="gameSearch">
+    <div class="searchBar">
+        <form action="#">
+            <input type="text" id="sbar" name="sbar" placeholder="RAID: Shadow Legends">
+            <label for="sbar"> <button>Search</button> </label>
+        </form>
+    </div>
+
+<div class="popUp">
+    <div class="exitButton">
+        <button id="closeButton" type="close-button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="logInTitle">
+    <h3>Log In</h3>
+    </div>  
+
+    <div class="logInForm">
+    <form id="userLogin">
+        <label for="logInUser">Username:</label>
+        <input type="text" id="logInUser" name="username" placeholder="xxkylecranexx" style="width: 300px" required>
+        <label for="logInPass">Password:</label>
+        <input type="password" id="logInPass" name="password" placeholder="************" style="width: 300px;" required>
+
+        <br>
+
+        <input id="showLogin" type="submit" value="Sign In" style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer;"">
+        <div class="redirectLink">
+        <a href="signup.html">Don't have an account yet?</a>
+        </div>
+    </form>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.showLoginButton').addEventListener('click', function() { document.querySelector('.popUp').classList.add('active');
+});
+    document.querySelector('#closeButton').addEventListener('click', function() {document.querySelector('.popUp').classList.remove('active');
+});
+</script>
+<script>
+    // Select the form
+    const form = document.getElementById('userLogin');
+
+    form.addEventListener('submit', async (event) =>
+    {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Create a FormData instance
+        const formData = new FormData(form);
+
+        // Convert the FormData to JSON
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+        const json = JSON.stringify(data);
+        // alert with the json data
+        // alert(json);
+        // Send a POST request to the Express endpoint
+        const response = await fetch('http://localhost:2364/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        });
+
+        // Log the response
+        const result = await response.json();
+        console.log(result);
+    });
+</script>
+</body>
+</html>

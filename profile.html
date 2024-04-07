@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style type="text/css">
+        .body {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .navBar{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navLogo a {
+            font-size: larger;
+        }
+        .navElements li {
+            list-style: none;
+            display: inline;
+        }
+        li a {
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        .navElements button {
+            background-color: grey;
+            border-radius: 8px;
+            font-size: 18px;
+            height: 33px;
+            width: 80px;
+            cursor: pointer;
+        }
+        .profileContainer {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .profileNameImg img{
+            min-width: 275px;
+            max-width: 275px;
+            min-height: 275px;
+            max-height: 275px;
+        }
+        .profileNameImg h2 {
+            display: inline;
+            vertical-align: top;
+            margin-left: 20px;
+        }
+        .bio {
+            margin-left: 20px;
+            margin-bottom: 700px;
+            margin-right: 485px;
+            position: fixed;
+            left: 303px;
+            top: 120px;
+        }
+        .currentlyPlaying {
+            text-decoration: underline;
+            position: fixed;
+            left: 100px;
+            top: 365px;
+        }
+        .currentlyPlaying img{
+            position: fixed;
+            left: 80px;
+        }
+        .groupingsContainter{
+            float: right;
+        }
+        .reviews {
+            position: fixed;
+            left: 322px;
+            top: 365px;
+        }
+        .reviews p {
+            text-decoration: underline;
+        }
+        .collections {
+            position: fixed;
+            vertical-align: top;
+            margin-top: -292px;
+            margin-left: -290px;
+        }
+        .collections p {
+            text-decoration: underline;
+        }
+        .listsOfCollections tr, td{
+            list-style: none;
+            text-decoration: none;
+            vertical-align: auto;
+            margin-left: -40px;
+            font-size: medium;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            word-wrap: break-word;
+            width: 500px;
+        }
+        .friends {
+            position: fixed;
+            margin-left: -290px;
+            top: 365px;
+        }
+        .friends p {
+            text-decoration: underline;
+        }
+        .friends ul {
+            padding-top: 5px;
+            padding-bottom: 10px;
+            list-style: none;
+        }
+        .friends img{
+            margin-left: -40px;
+            width: 90px;
+        }
+        .friends a{
+            font-size: medium;
+        }
+        .reviewTables {
+            word-wrap: break-word;
+            margin-top: -20px;
+            width: 500px;
+        }
+        .reviewTables td{
+            border-style: solid;
+            width: 350px;;
+        }
+    </style>
+</head>
+<body>
+    <div class = "navBar">
+    <div class = "navLogo">
+    <h1> <a href="index.html">ProjectGG</h1></a> </h1>
+    </div>
+
+    <div class = "navElements">
+    <ul>
+        <li> <a href="index.html">Home</a> </li>
+        <li> <a href="gamesearch.html"> Games</a> </li>
+        <li> <a href="">Community</a> </li>
+        <li> <a href="#"> <button class="showLoginButton" style="color: whitesmoke;">Profile</button> </a></li>
+    </ul>
+    </div>
+</div>
+
+<div class="profileContainer">
+
+    <div class="profileNameImg">
+    <img src="avatar.png" width="275px" height="275px">
+    <h2>USERNAME</h2>
+    </div>
+
+    <div class="bio">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus aspernatur ex, quod explicabo commodi soluta dolorum, delectus pr</p>
+    </div>
+
+    <div class="currentlyPlaying">
+    <p>Currently Playing</p>
+    <img src="gamecover.png" width="170px">
+    </div>
+
+    <div class="groupingsContainter">
+
+    <div class="reviews">
+    <a href=""> <p>Reviews</p> </a>
+        <div class="reviewTables">
+            <table>
+            <tr>
+                <td><a href="gamepage.html">game_name</a></td>
+                <td>*****</td>
+            </tr>
+            <br>
+            <tr>
+                <td colspan="3">omg, i loooooove this game. i cant wait for the 42nd installment!!1! </td>
+            </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td><a href="gamepage.html">game_name</a></td>
+                    <td>*</td>
+                </tr>
+                <br>
+                <tr>
+                    <td colspan="3">this game STUNK! </td>
+                </tr>
+                </table>
+        </div>
+    </div>
+
+    <div class="collections">
+    <a href=""> <p>Collections</p> </a>
+    <div class="listsOfCollections">
+    <table>
+        <tr>
+            <td> <a href=""> example1</a> </td>
+            <td> <a href=""> example2</a> </td> 
+            <td> <a href=""> exmple3</a> </td>
+        </tr>
+        <tr>
+            <td> <a href=""> example4</a> </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+
+    <div class="friends">
+    <a href=""> <p>Friends</p> </a>
+    <div class="listOfFriends">
+        <ul>
+            <li><a href=""><img src="avatar.png"></a><a href="">peepo</a></li>
+            <li><a href=""><img src="avatar.png"></a><a href="">plimbo1</a></li>
+            <li><a href=""><img src="avatar.png"></a><a href="">mr_eepy</a></li>
+            <li><a href=""><img src="avatar.png"></a><a href="">deepderp</a></li>
+        </ul>
+    </div>
+    </div>
+
+    </div>
+</div>
+</body>
+</html>
