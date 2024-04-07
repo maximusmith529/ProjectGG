@@ -4,8 +4,10 @@ const cors = require('cors');
 const app = express();
 const port = 2364;
 
+
 app.use(express.json());
 app.use(cors());
+app.set('view engine', 'ejs');
 
 // require database
 const db = require('./database.js');
@@ -202,4 +204,8 @@ app.get("/api/users/:userID/reviews", (req, res) =>
             data: rows,
         });
     });
+});
+
+app.get('/index', (req, res) => {
+    res.render('index');
 });

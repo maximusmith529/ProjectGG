@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .navBar{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navLogo a {
+            font-size: larger;
+        }
+        .navElements li {
+            list-style: none;
+            display: inline;
+        }
+        li a {
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        .navElements button {
+            background-color: grey;
+            border-radius: 8px;
+            font-size: 18px;
+            height: 33px;
+            width: 80px;
+            cursor: pointer;
+        }
+        .logIn {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding-right: 30px;
+            padding-left: 30px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 500px;
+            height: 500px;
+            margin: auto;
+            clear: both;
+        }
+        .logIn input {
+
+            width: 100%;
+            clear: both;
+            font-size: larger;
+        }
+        .popUp {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding-right: 10px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1);
+
+            width: 400px;
+            height: 300px;
+            padding: 50px, 60px;
+            background-color: silver;
+
+            box-shadow: 5px 5px 5px 5px;
+            border-radius: 10px;
+
+            transition: top 0ms ease-in-out 200ms,
+                        opacity 200ms ease-in-out 0ms,
+                        transform 00ms ease-in-out 0ms;
+        }
+        .popUp.active {
+            top: 50%;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+
+            transition: top 0ms ease-in-out 0ms,
+                        opacity 200ms ease-in-out 0ms,
+                        transform 20ms ease-in-out 0ms;
+        }
+        .exitButton button {
+            float: right;
+            padding: 0;
+            font-size: x-large;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class = "navBar">
+        <div class = "navLogo">
+        <h1> <a href="index.html">ProjectGG</h1></a> </h1>
+        </div>
+    
+        <div class = "navElements">
+        <ul>
+            <li> <a href="index.html">Home</a> </li>
+        </ul>
+        </div>  
+    </div>
+
+    <div class="logIn">
+    <form id="signUpInfo">
+        <div class="username">
+        <label for="username" style=" font-size: large;">Username:</label>
+        <input type="text" id="username" name="username" style=" font-size: medium;" placeholder="cloudstrifexoxo" required>
+        </div>
+
+        <br>
+
+        <div class="password">
+        <label for="password" style=" font-size: larger;">Password:</label>
+        <input type="password" id="password" name="password" style=" font-size: medium;" placeholder="***********" required>
+        </div>
+
+        <br>
+
+        <div class="submitButton">
+        <input type="submit" value="Sign Up" style="color: whitesmoke;background-color: grey; border-radius: 8px; font-weight:430; cursor: pointer;"">
+        </div>
+    </div>
+    </form>
+    <script>
+        const form = document.getElementById('signUpInfo');
+        
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            const json = JSON.stringify(data);
+
+            // alert(json);
+            
+            const response = await fetch('http://localhost:2364/api/users/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: json
+            });
+
+            const result = await response.json();
+            console.log(result);
+        });
+    </script>
+</body>
+</html>
