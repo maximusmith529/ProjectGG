@@ -169,10 +169,28 @@ app.get("/api/reviews", (req, res) =>
 });
 
 // get all reviews for a game
-app.get("/api/reviews/:gameID", (req, res) =>
+app.get("/api/games/:gameID/reviews", (req, res) =>
 {
     const gameID = req.params.gameID;
     db.query("SELECT * FROM REVIEW WHERE GAME= ?", [gameID], (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: "success",
+            data: rows,
+        });
+    });
+});
+
+// get all reviews from a user
+app.get("/api/users/:userID/reviews", (req, res) =>
+{
+    const userID = req.params.userID;
+    db.query("SELECT * FROM REVIEW WHERE USER= ?", [userID], (err, rows) =>
     {
         if (err)
         {
