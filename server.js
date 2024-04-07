@@ -223,7 +223,7 @@ app.get('/gamepage', (req, res) => {
 });
 
 app.get('/gamesearch', (req, res) => {
-    db.query("SELECT GAMENAME FROM GAME", (err, rows) =>
+    db.query("SELECT * FROM GAME", (err, rows) =>
     {
         if (err)
         {
@@ -236,7 +236,7 @@ app.get('/gamesearch', (req, res) => {
 
 // select name from all games
 app.get('/games', (req, res) => {
-    db.query("SELECT GAMENAME FROM GAME", (err, rows) =>
+    db.query("SELECT * FROM GAME", (err, rows) =>
     {
         if (err)
         {
@@ -245,7 +245,7 @@ app.get('/games', (req, res) => {
         }
         res.json({
             message: "success",
-            data: rows[0].GAMENAME,
+            data: rows[0].GAMEPICTURE
         });
     });
 });
