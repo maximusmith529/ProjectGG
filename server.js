@@ -209,3 +209,43 @@ app.get("/api/users/:userID/reviews", (req, res) =>
 app.get('/index', (req, res) => {
     res.render('index');
 });
+
+app.get('/profile', (req, res) => {
+    res.render('profile');
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+app.get('/gamepage', (req, res) => {
+    res.render('gamepage');
+});
+
+app.get('/gamesearch', (req, res) => {
+    db.query("SELECT GAMENAME FROM GAME", (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.render('gamesearch', {games: rows});
+    });
+});
+
+// select name from all games
+app.get('/games', (req, res) => {
+    db.query("SELECT GAMENAME FROM GAME", (err, rows) =>
+    {
+        if (err)
+        {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: "success",
+            data: rows[0].GAMENAME,
+        });
+    });
+});

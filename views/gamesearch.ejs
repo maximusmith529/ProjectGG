@@ -190,16 +190,16 @@
 <body>
     <div class = "navBar">
     <div class = "navLogo">
-    <h1> <a href="index.html">ProjectGG</h1></a> </h1>
+    <h1> <a href="/index">ProjectGG</h1></a> </h1>
     </div>
 
     <div class = "navElements">
     <ul>
-        <li> <a href="index.html">Home</a> </li>
-        <li> <a href="gamesearch.html"> Games</a> </li>
+        <li> <a href="/index">Home</a> </li>
+        <li> <a href="/gamesearch"> Games</a> </li>
         <li> <a href="">Community</a> </li>
         <li> <button class="showLoginButton" style="color: whitesmoke;">Sign In</button> </li>
-        <li> <a href="profile.html"><button class="showLoginButton" style="color: whitesmoke;">Profile</button> </li></a>
+        <li> <a href="/profile"><button class="showLoginButton" style="color: whitesmoke;">Profile</button> </li></a>
     </ul>
     </div>
 </div>
@@ -216,18 +216,18 @@
 
     <div class="topGames">
         <ul>
-            <li><a href="gamepage.html"><img src="gta5.jpg"></a></li>
-            <li><a href="gamepage.html"><img src="minecraft.png"></a></li>
-            <li><a href="gamepage.html"><img src="bg3.png"></a></li>
-            <li><a href="gamepage.html"><img src="lol.png"></a></li>
+            <li><a href="/gamepage"><img src="gta5.jpg"></a></li>
+            <li><a href="/gamepage"><img src="minecraft.png"></a></li>
+            <li><a href="/gamepage"><img src="bg3.png"></a></li>
+            <li><a href="/gamepage"><img src="lol.png"></a></li>
         </ul>
     </div>
     <div class="topGamesNames">
         <ul>
-            <li><a href="gamepage.html">GTA 5</a></li>
-            <li style="left: 180px;"><a href="gamepage.html">Minecraft</a></li>
-            <li style="left: 180px;"><a href="gamepage.html">Baldur's Gate 3</a></li>
-            <li style="left: 155px;"><a href="gamepage.html">League of Legeneds</a></li>
+            <li><a href="/gamepage"><%= games[0].GAMENAME %></a></li>
+            <li style="left: 180px;"><a href="/gamepage"><%= games[1].GAMENAME %></a></li>
+            <li style="left: 185px;"><a href="/gamepage"><%= games[2].GAMENAME %></a></li>
+            <li style="left: 165px;"><a href="/gamepage"><%= games[3].GAMENAME %></a></li>
         </ul>
     </div>
 </div>
@@ -253,7 +253,7 @@
 
         <input id="showLogin" type="submit" value="Sign In" style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer;"">
         <div class="redirectLink">
-        <a href="signup.html">Don't have an account yet?</a>
+        <a href="/signup">Don't have an account yet?</a>
         </div>
     </form>
     </div>
