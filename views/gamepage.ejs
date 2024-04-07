@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProjectGG</title>
+    <title>Game Info</title>
  
     <style type="text/css">
         a {
             text-decoration: none;
             color: black;
+        }
+        .wrapper {
+            margin-left: auto;
+            margin-right:auto;
+            width: 1600px;
         }
         .navBar{
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -147,13 +152,28 @@
             top: -5px;
 
             cursor: pointer;
+            .profileNameImg img{
+            min-width: 275px;
+            max-width: 275px;
+            min-height: 275px;
+            max-height: 275px;
+    }
+    .reviewTables table{
+            word-wrap: break-word;
+            margin-top: -20px;
+            width: 500px;
+        }
+    .reviewTables td{
+            border-style: solid;
+            width: 350px;;
         }
     </style>
 </head>
+
 <body>
     <div class = "navBar">
     <div class = "navLogo">
-    <h1> <a href="/index">ProjectGG</h1></a> </h1>
+    <h1> <a href="/index">ProjectGG</a></h1>
     </div>
 
     <div class = "navElements">
@@ -168,13 +188,69 @@
 </div>
 
 <div class="gameSearch">
-    <div class="searchBar">
+    <div class="searchBar" style="flex-wrap: nowrap;">
         <form action="#">
             <input type="text" id="sbar" name="sbar" placeholder="RAID: Shadow Legends">
             <label for="sbar"> <button>Search</button> </label>
         </form>
     </div>
+</div>
 
+    <div class="gameImg">
+        <img src="gta5.jpg" style="height: 400px; width: 300px; padding-left: 55px; margin-top: -65px;">
+        <h2 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; padding-left: 130px;">GAME NAME</h2>
+    </div>
+
+    <div class="rating">
+        <h4 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; padding-left: 175px;">STARS</h4>
+    </div>
+    
+    <div class="bio">
+        <p style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; padding-left: 55px; flex-wrap: wrap; width: 600px; top: 10px; font-size: large;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus aspernatur ex, quod explicabo commodi soluta dolorum, delectus pr Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores totam perferendis exercitationem, esse tempora harum odio quidem sit, aspernatur, vero minus ex iure repellat dignissimos adipisci. Praesentium eum eaque quo.</p>
+    </div>
+
+    <div class="reviews" style="margin-left: 700px; margin-top: -550px">
+        <h2 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            Reviews</h2>
+        <div class="reviewTables" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: x-large;">
+        <table style="padding-top: 15px; padding-bottom: 15px; word-wrap: break-word; margin-top: -20px; width: 800px;">
+            <tr>
+                <td style="border-style: solid; width: 350px;">Username</td>
+                <td style="border-style: solid; width: 350px;">Rating</td>
+            </tr> 
+            <tr>
+                <td colspan="3" style="border-style: solid; width: 350px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem, officia? Maxime ab, ex voluptate quisquam magni reiciendis eos ut nobis id eveniet voluptatum necessitatibus beatae doloremque vel qui exercitationem perferendis.</td>
+            </tr>
+        </table>
+        <table style="padding-top: 15px; padding-bottom: 15px; word-wrap: break-word; margin-top: -20px; width: 800px;">
+            <tr>
+                <td style="border-style: solid; width: 350px;">Username</td>
+                <td style="border-style: solid; width: 350px;">Rating</td>
+            </tr> 
+            <tr>
+                <td colspan="3" style="border-style: solid; width: 350px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit excepturi ullam deserunt, fugiat dolore exercitationem nobis, numquam itaque nihil ut commodi! Harum temporibus veniam labore quaerat repellat. Nisi, rerum eius.</td>
+            </tr>
+        </table>
+        <table style="padding-top: 15px; padding-bottom: 15px; word-wrap: break-word; margin-top: -20px; width: 800px;">
+            <tr>
+                <td style="border-style: solid; width: 350px;">Username</td>
+                <td style="border-style: solid; width: 350px;">Rating</td>
+            </tr> 
+            <tr>
+                <td colspan="3" style="border-style: solid; width: 350px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, ipsum dolor. Repellendus qui totam sint autem quibusdam et aspernatur aliquid architecto tempore dolorem odio ex ullam velit recusandae, ea facilis.</td>
+            </tr>
+        </table>
+        <table style="padding-top: 15px; padding-bottom: 15px; word-wrap: break-word; margin-top: -20px; width: 800px;">
+            <tr>
+                <td style="border-style: solid; width: 350px;">Username</td>
+                <td style="border-style: solid; width: 350px;">Rating</td>
+            </tr> 
+            <tr>
+                <td colspan = "3" style="border-style: solid; width: 350px;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, delectus necessitatibus sapiente aliquid ad beatae commodi, maxime voluptate, incidunt soluta culpa quam sint quidem aperiam impedit cupiditate assumenda odit ullam?</td>
+            </tr>
+        </table>
+    </div>
+</div>
 <div class="popUp">
     <div class="exitButton">
         <button id="closeButton" type="close-button">
@@ -194,7 +270,7 @@
 
         <br>
 
-        <input id="showLogin" type="submit" value="Sign In" style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer;"">
+        <input id="showLogin" type="submit" value="Sign In" style="color: whitesmoke;background-color: grey; border-radius: 8px; cursor: pointer; ">
         <div class="redirectLink">
         <a href="/signup">Don't have an account yet?</a>
         </div>
@@ -241,4 +317,5 @@
     });
 </script>
 </body>
+</div>
 </html>
